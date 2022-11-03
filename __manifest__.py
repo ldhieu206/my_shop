@@ -1,0 +1,20 @@
+{
+    'name': 'My Shop',
+    'version': '1.0',
+    'category': 'Sales',
+    'summary': 'My Shop',
+    'description': """""",
+    'author': 'My Company',
+    'website': 'https://www.mycompany.com',
+    'depends': ['base','mail'],
+    'data': [
+        'security/my_shop_security.xml',
+        'security/ir.model.access.csv',
+        'views/menu.xml',
+        'views/customer.xml',
+        'views/product_template.xml',
+        'views/order.xml',
+        'views/cancel_order.xml',
+        # 'views/send_email.xml',
+    ],
+}

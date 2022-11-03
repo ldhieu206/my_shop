@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+my_shop.product_user,my_shop_product,model_my_shop_product,my_shop.my_shop_group_user,1,0,0,0
+my_shop.product,my_shop_product,model_my_shop_product,my_shop.my_shop_group_manager,1,0,0,0
+my_shop.customer,my_shop_customer,model_my_shop_customer,my_shop.my_shop_group_manager,1,1,1,1
+my_shop.order,my_shop.order,model_my_shop_order,my_shop.my_shop_group_manager,1,1,1,1
+my_shop.order_line,my_shop.order_line,model_my_shop_order_line,my_shop.my_shop_group_manager,1,1,1,1

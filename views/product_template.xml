@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="product_action" model="ir.actions.act_window">
+        <field name="name">Products</field>
+        <field name="res_model">my_shop.product</field>
+        <field name="view_mode">tree,form,kanban</field>
+    </record>
+
+    <record id="product_form" model="ir.ui.view">
+        <field name="name">Products</field>
+        <field name="model">my_shop.product</field>
+        <field name="arch" type="xml">
+            <form string="Products">
+                <sheet>
+                    <div class="oe_title">
+                        <field name="priority" widget="priority"/>
+                        <label for="name" class="oe_edit_only"/>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="description"/>
+                            <field name="category_id"/>
+                        </group>
+                        <group>
+                            <field name="image" widget="image" class="oe_avatar"/>
+                            <field name="price"/>
+                            <field name="product_count"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="product_tree" model="ir.ui.view">
+        <field name="name">Products</field>
+        <field name="model">my_shop.product</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="price"/>
+                <field name="product_count"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="product_kanban" model="ir.ui.view">
+        <field name="name">Products</field>
+        <field name="model">my_shop.product</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name" string="Product"/>
+                <field name="image"/>
+                <field name="price" string="Price"/>
+                <field name="product_count" string="Product Count"/>
+                <field name="description" string="Description"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="oe_kanban_details">
+                                <strong>
+                                    <field name="name"/>
+                                </strong>
+                                <div>
+                                    <field name="image" widget="image" class="oe_kanban_avatar_small"/>
+                                </div>
+                                <div>
+                                    <field name="price" string="Price"/>
+                                </div>
+                                <div>
+                                    <field name="product_count" string="Product Count"/>
+                                </div>
+                                <div>
+                                    <field name="description" string="Description"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="search_product_template" model="ir.ui.view">
+        <field name="name">Product</field>
+        <field name="model">my_shop.product</field>
+        <field name="arch" type="xml">
+            <search string="Products">
+                <field name="name" string="Name" filter_domain="[('name','ilike',self),('ref','ilike',self)]"/>
+                <field name="description"/>
+                <field name="price"/>
+                <filter string="My Products" name="my_products" domain="[('name', 'ilike', self)]"/>
+                <field name="price" select="range" enable_counters="1" string="Price"/>
+                <separator/>
+                <searchpanel>
+                    <field name="category_id" select="multi" enable_counters="1" string="Category"/>
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+
+    <menuitem id="my_shop_menu" name="My Shop" sequence="10"/>
+    <menuitem id="product_menu" name="Products" parent="my_shop_menu" action="product_action"/>
+</odoo>
